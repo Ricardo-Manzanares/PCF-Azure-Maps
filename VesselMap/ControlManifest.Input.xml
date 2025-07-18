@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="VM" constructor="VesselMap" version="1.2.13" display-name-key="VesselMap" description-key="VesselMap control - v1.2.13" control-type="virtual" >
+    <!--external-service-usage node declares whether this 3rd party PCF control is using external service or not, if yes, this control will be considered as premium and please also add the external domain it is using.
+    If it is not using any external service, please set the enabled="false" and DO NOT add any domain below. The "enabled" will be false by default.
+    Example1:
+      <external-service-usage enabled="true">
+        <domain>www.Microsoft.com</domain>
+      </external-service-usage>
+    Example2:
+      <external-service-usage enabled="false">
+      </external-service-usage>
+    -->
+    <external-service-usage enabled="false">
+      <!--UNCOMMENT TO ADD EXTERNAL DOMAINS
+      <domain></domain>
+      <domain></domain>
+      -->
+    </external-service-usage>
+
+    <!-- Any points in Map from dataSet -->
+    <data-set name="dataSetPoints" display-name-key="dataSetPoints" cds-data-set-options="displayCommandBar:false;displayViewSelector:false;displayquickfind:false;">
+    </data-set>   
+
+    <!-- Only one Point in Map from fields -->
+    <property name="latitudeFieldPoint" display-name-key="latitudeFieldPoint" description-key="Latitude from point or field name latitude point." of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="longitudeFieldPoint" display-name-key="longitudeFieldPoint" description-key="Longitude from point or field name longitude point." of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="textFieldPoint" display-name-key="textFieldPoint" description-key="Text from point or field name text point." of-type="SingleLine.Text" usage="input" required="false" />
+
+    <!-- Only one Point in Map from lookup -->
+    <property name="lookupIdLookupPoint" display-name-key="lookupIdLookupPoint" description-key="Link to field lookup from from point." of-type="Lookup.Simple" usage="input" required="false" />
+    
+    <!-- Options Globals of control -->
+    <property name="showCurrentLocationUser" display-name-key="showCurrentLocationUser" description-key="Shows the users location on the map" of-type="Enum" default-value="False" usage="input" required="true">
+      <value name="True" display-name-key="True">True</value>
+      <value name="False" display-name-key="False">False</value>
+    </property> 
+    <property name="lockInteractiveUser" display-name-key="lockInteractiveUser" description-key="Block user interaction on the map" of-type="Enum" default-value="False" usage="input" required="true">
+      <value name="True" display-name-key="True">True</value>
+      <value name="False" display-name-key="False">False</value>
+    </property> 
+    <property name="showControlsMap" display-name-key="showControlsMap" description-key="Show controls on map" of-type="Enum" default-value="False" usage="input" required="true">
+      <value name="True" display-name-key="True">True</value>
+      <value name="False" display-name-key="False">False</value>
+    </property> 
+    <property name="modeLoad" display-name-key="modeLoad" description-key="Mode load of control" of-type="Enum" usage="input" required="true">
+      <value name="DataSet" display-name-key="DataSet">DataSet</value>
+      <value name="FieldPoint" display-name-key="FieldPoint">FieldPoint</value>
+      <value name="LookupPoint" display-name-key="LookupPoint">LookupPoint</value>
+    </property> 
+    <property name="popupType" display-name-key="popupType" description-key="Mode load popup in Map" of-type="Enum" usage="input" required="true">
+      <value name="default" display-name-key="default">Default</value>
+      <value name="rightPanel" display-name-key="rightPanel">Right panel</value>
+      <value name="leftPanel" display-name-key="leftPanel">Left panel</value>
+    </property> 
+    <property name="maxZoom" display-name-key="maxZoom" description-key="Max zoom on Map. Min 1, max 24. Greater than or equal to Min Zoom." of-type="Whole.None" usage="input" required="true" />
+    <property name="minZoom" display-name-key="minZoom" description-key="Min zoom on Map. Min 1, max 24. Less than or equal to Max Zoom." of-type="Whole.None" usage="input" required="true" />
+    <property name="zoomDefaultSelectedPoint" display-name-key="zoomDefaultSelectedPoint" description-key="Default zoom when selected point in Map. Min 1, max 24. Default value is 11." default-value="11" of-type="Whole.None" usage="input" required="true" />
+           
+    <!--
+      Property node's of-type attribute can be of-type-group attribute.
+      Example:
+      <type-group name="numbers">
+        <type>Whole.None</type>
+        <type>Currency</type>
+        <type>FP</type>
+        <type>Decimal</type>
+      </type-group>
+      <property name="sampleProperty" display-name-key="Property_Display_Key" description-key="Property_Desc_Key" of-type-group="numbers" usage="bound" required="true" />
+    -->
+    <resources>
+      <code path="index.ts" order="1"/>
+      <platform-library name="React" version="16.8.6" />
+      <platform-library name="Fluent" version="9.4.0" />
+      <!-- UNCOMMENT TO ADD MORE RESOURCES
+      <css path="css/VesselMap.css" order="1" />
+      <resx path="strings/VesselMap.1033.resx" version="1.0.0" />
+      -->
+      <css path="../node_modules/azure-maps-control/dist/atlas.min.css" order="1" />
+      <css path="WebResources/vesselMap.css" order="2" />
+      <img path="WebResources/functionalLocation.png" />
+      <img path="WebResources/iconvessel_a_going.png" />
+      <img path="WebResources/iconvessel_still.png" />
+    </resources>
+    <feature-usage>
+      <uses-feature name="WebAPI" required="true"/>
+    </feature-usage>
+  </control>
+</manifest>
