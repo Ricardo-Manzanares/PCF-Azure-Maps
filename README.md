@@ -23,7 +23,7 @@ The following properties from the `ControlManifest.Input.xml` file are required 
 
 ### DataSet
 
-- `dataSetPoints`: Array of records that contain the data to display on the map. Requires a configured view of an entity.
+- `dataSetPoints`: Array of records that contain the data to display on the map. Requires a configured view of an entity. By default, this PCF is configured for the standard 'Field Service' entity called functional locations.
 - `modeLoad`: Must be set to `DataSet`. Only this mode allows filter display.
 
 ### Lookup
@@ -107,3 +107,4 @@ The control uses the **Dynamics CRM API** to retrieve information on ports and v
 
 - **Popups with port information**
 <img width="1564" height="713" alt="image" src="https://github.com/user-attachments/assets/0e7c2bc6-412d-492d-aa38-dbee7b7dd9c7" />
+
